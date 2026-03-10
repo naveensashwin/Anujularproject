@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FISAT Angular Speech to Text Product</title>
+
+<style>
+
+/* Kerala green gradient background */
+body{
+background:linear-gradient(135deg,#0f9b0f,#a8e063);
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+/* Main container card */
+.container{
+width:430px;
+background:white;
+padding:35px;
+border-radius:14px;
+box-shadow:0 6px 20px rgba(0,0,0,0.25);
+text-align:center;
+}
+
+/* Title style */
+h2{
+color:#0f7a0f;
+margin-bottom:20px;
+}
+
+/* Text area */
+textarea{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+/* Button base style */
+button{
+padding:11px 18px;
+margin:10px 6px;
+border:none;
+border-radius:7px;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+transition:0.3s;
+}
+
+/* Start button */
+.start{
+background:#1e8e3e;
+color:white;
+}
+
+.start:hover{
+background:#0f7a0f;
+}
+
+/* Stop button */
+.stop{
+background:#e74c3c;
+color:white;
+}
+
+.stop:hover{
+background:#c0392b;
+}
+
+/* Clear button */
+.clear{
+background:#2ecc71;
+color:white;
+}
+
+.clear:hover{
+background:#27ae60;
+}
+
+/* Footer small text */
+.footer{
+margin-top:15px;
+font-size:13px;
+color:#555;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>FISAT Angular js Students Speech to Text Product</h2>
+
+<textarea id="output" rows="5" placeholder="Your speech will appear here..."></textarea>
+
+<br>
+
+
+<button class="start" onclick="startRecognition()"> Start Listening</button>
+<button class="stop" onclick="stopRecognition()">Stop Listening</button>
+<button class="clear" onclick="clearText()"> Clear</button>
+
+<div class="footer">
+Product by FISAT Angular Js Students
+</div>
+
+</div>
+
+<script>
+
+/* Create speech recognition object */
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+/* Language */
+recognition.lang = "en-IN";
+
+/* Continuous listening */
+recognition.continuous = true;
+
+/* Display speech text */
+recognition.onresult = function(event){
+
+let transcript="";
+
+for(let i=event.resultIndex;i<event.results.length;i++){
+transcript += event.results[i][0].transcript;
+}
+
+document.getElementById("output").value = transcript;
+
+};
+
+/* Start listening */
+function startRecognition(){
+recognition.start();
+}
+
+/* Stop listening */
+function stopRecognition(){
+recognition.stop();
+}
+
+/* Clear text */
+function clearText(){
+document.getElementById("output").value="";
+}
+
+</script>
+
+</body>
+</html>
